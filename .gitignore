@@ -1,0 +1,16 @@
+.DS_STORE
+.idea/
+.metadata/
+.class
+*.webm
+Icon
+*~
+*.zip
+equations.txt
+out/production
+.classpath
+.project
+.settings/
+*.iml
+bin/
+target/

@@ -1,0 +1,52 @@
+@startuml
+!include Expressions.plantuml
+!include States.plantuml
+!include Visitors.plantuml
+
+class ClientDriver {
+    main()
+}
+ClientDriver o-- CalculatorInputWindow
+ClientDriver o-- CalculatorInputHandler
+
+class CalculatorInputWindow {
+    -JButton [] buttons
+    +CalculatorInputWindow()
+    +attach(ActionListener listener)
+    +getDisplay(): JTextField
+}
+
+CalculatorInputWindow -left-|> JFrame
+
+class CalculatorInputHandler {
+    +State current
+    +Expression operand1
+    +Expression operand2
+    +Expression operator
+    +CalculatorInputWindow calculator
+    +CalculatorInputHandler(CalculatorInputWindow _calculator)
+    +actionPerformed(ActionEvent e): void
+    +reset(): void
+    +updateDisplay(): void
+}
+
+interface ActionListener {
+    +actionPerformed(ActionEvent e): void
+}
+
+CalculatorInputHandler .up.|> ActionListener
+CalculatorInputHandler o-- State
+CalculatorInputHandler o-- Expression
+CalculatorInputHandler o-- CalcVisitor
+CalculatorInputHandler o-- Client
+
+class Client {
+    +String host
+    +int port
+    +Client()
+    +sendToServer(Expression e): void
+}
+
+Client o-- Expression
+
+@enduml

@@ -1,0 +1,24 @@
+package Visitors {
+    interface Visitor {
+        +visit(Expression e): String
+        +visit(Operand o): String
+        +visit(Operation o): String
+    }
+
+    class CalcVisitor {
+        +visit(Expression e): String
+        +visit(Operand o): String
+        +visit(Operation o): String
+        +calculate(Expression e): String
+    }
+    Visitor <|-down- CalcVisitor
+
+    class TreeVisitor {
+        +visit(Expression e): String
+        +visit(Operand o): String
+        +visit(Operation o): String
+        +getTree(Expression e): String
+        +getTree(Expression e, String neighbor): String
+    }
+    Visitor <|-down- TreeVisitor
+}

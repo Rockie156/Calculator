@@ -1,0 +1,15 @@
+@startuml
+skinparam componentStyle uml2
+
+component ClientCalculator {
+    [ClientDriver] -up-> [Client] : sendToServer()
+}
+
+
+component ServerCalculator {
+
+    [Client] -right-> [ServerDriver] : TCP/IP
+    [ServerDriver] --> [ClientHandler]
+    [ClientHandler] --> [PrintWriter]
+}
+@enduml

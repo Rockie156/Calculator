@@ -1,0 +1,28 @@
+@startuml
+!include Visitors.plantuml
+!include Expressions.plantuml
+
+class ServerDriver {
+    +int port
+    +main()
+}
+
+ServerDriver o-right- ClientHandler : 1 .. *
+
+class ClientHandler {
+    +Socket client
+    +int count
+    +ArrayList<Expressions> expressions
+    +ClientHandler(Socket client_socket)
+    +run(): void
+}
+
+ClientHandler -up-|> Thread
+
+class Thread {
+    +run(): void
+}
+
+ClientHandler o-- TreeVisitor
+ClientHandler o-- Expression
+@enduml

@@ -1,0 +1,28 @@
+package Expressions {
+    abstract class Expression {
+        +String value
+        +Expression(String value)
+        +getValue(): String
+        +appendVal(String val): void
+        +accept(Visitor v): String
+    }
+
+    Expression .up.|> Serializable
+    Operand -up-|> Expression
+    Operator -up-|> Expression
+
+    class Operand {
+        +Operand(String value)
+        +accept(Visitor v): String
+    }
+
+    class Operator {
+        +Expression left
+        +Expression right
+        +Operator(String value)
+        +accept(Visitor v): String
+        +setChildren(Expression left, Expression right): void
+        +getLeftChild(): Expression
+        +getRightChild(): Expression
+    }
+}

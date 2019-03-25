@@ -1,0 +1,32 @@
+!definelong STATE(name)
+class name {
+    +name(State parent)
+    +changeTree(Expression [] exprs): Expression []
+}
+name -up-|> State
+!enddefinelong
+
+package States {
+    abstract class State {
+        +String value
+        +HashMap<Character, Supplier<State>> transitionMap
+        +ArrayList<Character> tokens
+        +State parent
+        +State()
+        +State(State parent)
+        +getNext(Character token): State
+        +getToken(): String
+        +addToken(): void
+        +discard(): void
+        +putKeys(String tokens, Supplier<State> stateSupplier): void
+        +changeTree(Expression [] exprs): Expression []
+    }
+    STATE(Calculate)
+    STATE(WaitingForNextOperand)
+    STATE(GettingSecondOperand)
+    STATE(GettingFirstOperand)
+    STATE(Error)
+    STATE(Start)
+
+
+}
