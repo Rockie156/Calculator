@@ -45,7 +45,9 @@ public class CalculatorInputHandler implements ActionListener {
     }
 
     /**
-     * Updates the display
+     * Updates the display by fetching the current
+     * expression status in the current state
+     * and formatting it into a string
      */
     public void updateDisplay() {
         JTextField display = calculator.getDisplay();
